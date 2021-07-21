@@ -1,6 +1,4 @@
-import * as fetchImport from 'isomorphic-unfetch';
 import axios, { AxiosPromise } from 'axios';
-const fetch = (fetchImport.default || fetchImport) as typeof fetchImport.default;
 
 type Config = {
   live: boolean;

@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "isomorphic-unfetch": "^3.1.0",
+    "nock": "^13.1.1",
     "querystringify": "^2.2.0"
   }
 }
