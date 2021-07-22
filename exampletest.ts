@@ -2,6 +2,7 @@ import Cocolis from './src/index'
 
 const CocolisClient = new Cocolis({ live: false }) 
 CocolisClient.sign_in({app_id: 'e0611906', password: 'sebfie'}).then(r => {
+  console.log(r)
   const canMatchParams = {
     from: {
       postal_code: "13001"
