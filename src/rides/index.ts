@@ -1,6 +1,6 @@
 import * as qs from 'querystringify';
 import { Base } from '../base';
-import { CanMatchParams } from './types';
+import { CanMatchParams, CreateParams } from './types';
 
 const resourceName = 'rides';
 
@@ -13,6 +13,23 @@ export class Rides extends Base {
         to: params.to,
         volume: params.volume,
         content_value: params.content_value,
+      },
+      method: 'POST',
+    });
+  }
+  
+  mine() {
+    const query = `${resourceName}/mine`;
+    return this.requestAuthenticated<any>(query, {
+      method: 'GET',
+    });
+  }
+
+  create(params: CreateParams) {
+    const query = `${resourceName}`;
+    return this.requestAuthenticated<CreateParams>(query, {
+      data: {
+        ride: params
       },
       method: 'POST',
     });
