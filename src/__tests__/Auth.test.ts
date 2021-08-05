@@ -1,11 +1,11 @@
 import * as nock from 'nock';
 import Cocolis from '..';
 
-it('make auth on sandbox cocolis api', async () => {
-  // mount a cassette
-  nock.back.setMode('record');
-  nock.back.fixtures = __dirname + '/fixtures/auth';
+// mount a cassette
+nock.back.setMode('record');
+nock.back.fixtures = __dirname + '/fixtures/auth';
 
+it('make auth on sandbox cocolis api', async () => {
   nock.back('signin.json', async (nockDone) => {
     const CocolisClient = new Cocolis({ live: false });
     var r = await CocolisClient.sign_in({ app_id: 'e0611906', password: 'sebfie' });
