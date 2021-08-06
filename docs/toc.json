@@ -1,0 +1,33 @@
+{
+  "items": [
+    {
+      "type": "item",
+      "title": "Introduction",
+      "uri": "docs/Introduction.md"
+    },
+    {
+      "type": "item",
+      "title": "Rides",
+      "uri": "docs/Rides.md"
+    },
+    {
+      "type": "item",
+      "title": "README",
+      "uri": "README.md"
+    },
+    {
+      "type": "divider",
+      "title": "Models"
+    },
+    {
+      "type": "item",
+      "title": "ride",
+      "uri": "docs/models/ride/ride-full.v1.json"
+    },
+    {
+      "type": "item",
+      "title": "public_user",
+      "uri": "docs/models/user/public_user.v1.json"
+    }
+  ]
+}
