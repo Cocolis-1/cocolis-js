@@ -1,0 +1,58 @@
+{
+  "id": "file:/public_user.json#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "number"
+    },
+    "nickname": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "phone_verified": {
+      "type": "boolean"
+    },
+    "role": {
+      "type": "string"
+    },
+    "email_verified": {
+      "type": "boolean"
+    },
+    "sign_up_finished": {
+      "type": "boolean"
+    },
+    "last_sign_in_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "business_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "avatar": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "identity_validated": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id"
+  ],
+  "description": "Profil publique d'un utilisateur",
+  "title": "public_user",
+  "x-tags": [
+    "user",
+    "public",
+    "profile"
+  ]
+}
