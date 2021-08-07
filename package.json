@@ -7,6 +7,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest --config jestconfig.json",
+    "test-ci": "jest --config jestconfig.json --coverage",
     "format": "prettier --write \"src/**/*.{ts,js}\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",

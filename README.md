@@ -1,5 +1,7 @@
 # Cocolis JavaScript SDK
 
+[![codecov](https://codecov.io/gh/Cocolis-1/cocolis-js/branch/develop/graph/badge.svg?token=zrl7Xa2RNq)](https://codecov.io/gh/Cocolis-1/cocolis-js)
+
 # Getting started
 
 This library has been designed to help developers integrate **Cocolis** features into their application without managing API calls.
