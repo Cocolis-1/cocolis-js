@@ -41,3 +41,16 @@ export type CreateParams = {
   external_id?: string;
   photos_url?: string;
 };
+
+export type CanMatch = {
+  result: boolean,
+  estimated_prices: {
+    regular: number,
+    with_insurance: number | null,
+  },
+  insurance_detail: {
+      amount: number,
+      conditions_url: string
+  },
+  rider_count: number
+};

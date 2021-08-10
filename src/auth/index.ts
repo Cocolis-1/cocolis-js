@@ -1,13 +1,13 @@
 import * as qs from 'querystringify';
 import { Base } from '../base';
-import { AuthParams, AuthUserParams } from './types';
+import { AuthParams, UserAuth } from './types';
 
 const resourceName = 'app_auth/sign_in';
 
 export class Auth extends Base {
   async sign_in(params: AuthParams) {
     const query = `${resourceName}`;
-    const request = await this.request<AuthUserParams>(query, {
+    const request = await this.request<UserAuth>(query, {
       data: {
         app_id: params.app_id,
         password: params.password,

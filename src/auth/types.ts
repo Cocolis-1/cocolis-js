@@ -13,7 +13,3 @@ export type UserAuth = {
   updated_at: string;
   reserve_amount: number;
 };
-
-export type AuthUserParams = {
-  data: UserAuth;
-};

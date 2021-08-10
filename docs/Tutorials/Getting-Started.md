@@ -1,6 +1,6 @@
 # Implémentation standard
 
-Retrouvez notre librairie PHP sur le lien suivant : https://github.com/Cocolis-1/cocolis-php
+Retrouvez notre librairie JavaScript sur le lien suivant : https://github.com/Cocolis-1/cocolis-js
 
 L'implémentation de Cocolis se fait en général en respectant ces étapes :
 
@@ -18,103 +18,92 @@ Vous pouvez demander la création d'un compte développeur en remplissant [ce fo
 
 ## 3. Authentification
 
-Toutes les requêtes API doivent être authentifiées grâce à notre librairie PHP pour pouvoir accéder aux ressources.
+Toutes les requêtes API doivent être authentifiées grâce à notre librairie JS pour pouvoir accéder aux ressources.
 
 > Pour comprendre le fonctionnement de l'authentification, reportez vous à la [rubrique dédiée](../../Installation-et-utilisation/03-Authentification.md). En particulier, concernant la vérification de la validité de vos tokens.
 
 1. Créez un Client HTTP avec notre API en vous authentifiant :
 
-```php
-$client = Client::create(array(
-    'app_id' => 'mon_appid',
-    'password' => 'mon_mot_de_passe',
-    'live' => false // Permet de choisir l'environnement
-  ));
-$client->signIn(); // Cet appel fait l'authentification
+```typescript
+const CocolisClient = new Cocolis({ live: false });
+var r = await CocolisClient.sign_in({ app_id: 'mon_app_id', password: 'mon_password' });
 ```
 
-> La librairie PHP se chargera d'utiliser vos tokens d'authentification pour vous authentifier lors de vos prochains appels
-
+> La librairie JS se chargera d'utiliser vos tokens d'authentification pour vous authentifier lors de vos prochains appels
 
 ## 4. Gérer l'expiration d'un token
 
 Si vous obtenez une réponse avec un code `401`, cela signifie que votre token a expiré.
 
-Pour prévenir de ce problème vous pouvez vérifier la validité des tokens :
-
-```php
-$authinfo = ["uid" => "e0611906", "access-token" => "thisisnotavalidtoken", "client" => "HLSmEW1TIDqsSMiwuKjnQg", "expiry" => "1590748027"]
-$client->validateToken($authinfo);
-```
-
-Le `$authinfo` n'est pas un paramètre obligatoire, il permet de tester la validité d'autres paramètres d'authentification au cas ou vous les ayez sauvegardé par vos propres moyens.
-
-Si `$authinfo` n'est pas spécifié, ça utilisera ceux du dernier appel de `signIn()`
-
-L'appel renvoie une réponse trouvable dans le `body` avec `"success": boolean` ou bien un code HTTP 200 qui permet de déterminer la validité des informations d'authentification.
-
-Si le token n'est plus valide, il suffit de refaire un `$client->signIn()`
+Si le token n'est plus valide, il suffit de refaire un `await CocolisClient.sign_in({ app_id: 'mon_app_id', password: 'mon_password' })`
 
 ## 5. Eligibilité d'une livraison
 
 <!-- theme: warning -->
+
 > ### Tous nos prix sont en centimes
 
 <!--
 type: tab
 title: Doc
 -->
+
 Pour savoir si la livraison Cocolis est éligible d'un code postal A à un code postal B, il faut appeler l'URL :
 
-```php
-$client->getRideClient()->canMatch(75000, 31400, 10); // Code postal de départ,Code postal d'arrivé, Volume en m3 de l'objet à transporter
+```typescript
+const canMatchParams = {
+  from: {
+    postal_code: '13001',
+  },
+  to: {
+    postal_code: '31000',
+  },
+  volume: 500, // Volume en m3
+  content_value: 120000, // Prix en centimes
+};
+
+let response = await CocolisClient.can_match(canMatchParams);
 ```
+
+La réponse est sous la forme d'un **object** Javascript.
 
 ---
 
 ```json json_schema
 {
-    "title": "Response",
-    "type": "object",
-    "properties": {
-        "from": {
-            "type": "object",
-            "properties": {
-              "postal_code": {
-                "type": "string",
-                "description": "Code postal du point de départ"
-              }
-            },
-            "required": [
-              "postal_code"
-            ]
-        },
-        "to": {
-            "type": "object",
-            "properties": {
-              "postal_code": {
-                "type": "string",
-                "description": "Code postal du point d'arrivée"
-              }
-            },
-            "required": [
-              "postal_code"
-            ]
-        },
-        "volume": {
-            "type": "number",
-            "description": "Somme des volumes en m3 des produits à livrer"
-        },
-        "content_value": {
-            "type": "number",
-            "description": "Valeur de la livraison en Centimes (Valeur de la commande)"
+  "title": "Response",
+  "type": "object",
+  "properties": {
+    "from": {
+      "type": "object",
+      "properties": {
+        "postal_code": {
+          "type": "string",
+          "description": "Code postal du point de départ"
         }
+      },
+      "required": ["postal_code"]
     },
-    "required": [
-      "from",
-      "to",
-      "volume"
-    ]
+    "to": {
+      "type": "object",
+      "properties": {
+        "postal_code": {
+          "type": "string",
+          "description": "Code postal du point d'arrivée"
+        }
+      },
+      "required": ["postal_code"]
+    },
+    "volume": {
+      "type": "number",
+      "description": "Somme des volumes en m3 des produits à livrer"
+    },
+    "content_value": {
+      "type": "number",
+      "description": "Valeur de la livraison en Centimes (Valeur de la commande)"
+    }
+  },
+  "required": ["from", "to", "volume"]
 }
 ```
 
@@ -123,7 +112,7 @@ type: tab
 title: Réponse
 -->
 
-La réponse sera un stdClass du format :
+La réponse sera un object du format :
 
 ```json json_schema
 {
@@ -156,7 +145,7 @@ La réponse sera un stdClass du format :
               "description": "Montant assuré en  !! CENTIMES !!"
             },
             "conditions_url": {
-              "type": "number",
+              "type": "string",
               "description": "Liens vers les conditions générales de l'assurance"
             }
           }
@@ -174,6 +163,7 @@ La réponse sera un stdClass du format :
 ## 6. Création d'une annonce :
 
 <!-- theme: warning -->
+
 > ### Tous nos prix sont en centimes
 
 Quand une vente a été réalisée sur votre site avec notre mode de livraison, il faut ensuite la créer sur Cocolis. Nous vous recommandons de la créer 30 minutes après le paiement pour gérer des cas d'annulation rapide sur votre site.
@@ -183,62 +173,66 @@ type: tab
 title: Doc
 -->
 
-```php
-$rideClient = $client->getRideClient();
-$params = [
-  "description" => "Carcassonne vers toulu",
-  "from_lat" => 43.212498,
-  "to_lat" => 43.599120,
-  "from_address" => "Carcassonne",
-  "to_address" => "Toulouse",
-  "from_lng" => 2.350351,
-  "to_lng" => 1.444391,
-  "from_is_flexible" => true,
-  "from_pickup_date" => "2020-06-13T14:21:21+00:00",
-  "to_is_flexible" => true,
-  "to_pickup_date" => "2020-06-13T14:21:21+00:00",
-  "is_passenger" => false,
-  "is_packaged" => false,
-  "price" => 57000,
-  "volume" => 15,
-  "environment" => "objects",
-  "from_need_help" => false,
-  "from_need_help_floor" => "0",
-  "from_need_help_elevator" => false,
-  "from_need_help_furniture_lift" => false,
-  "to_need_help" => false,
-  "to_need_help_floor" => 0,
-  "to_need_help_elevator" => false,
-  "to_need_help_furniture_lift" => false,
-  "rider_extra_information" => "Extra informations",
-  "photos" => [],
-  "ride_objects_attributes" => [
-    [
-      "title" => "Canapé",
-      "qty" => 1,
-      "format" => "xxl"
-    ]
+```typescript
+const createRideParams = {
+  description: 'Carcassonne vers toulu',
+  from_lat: 43.212498,
+  to_lat: 43.59912,
+  from_address: 'Carcassonne',
+  to_address: 'Toulouse',
+  from_lng: 2.350351,
+  to_lng: 1.444391,
+  from_is_flexible: true,
+  from_pickup_date: '2020-06-13T14:21:21+00:00',
+  to_is_flexible: true,
+  to_pickup_date: '2020-06-13T14:21:21+00:00',
+  is_passenger: false,
+  is_packaged: false,
+  price: 57000,
+  volume: 15,
+  environment: 'objects',
+  from_need_help: false,
+  from_need_help_floor: false,
+  from_need_help_elevator: false,
+  from_need_help_furniture_lift: false,
+  to_need_help: false,
+  to_need_help_floor: false,
+  to_need_help_elevator: false,
+  to_need_help_furniture_lift: false,
+  rider_extra_information: 'Extra informations',
+  photo_urls: [
+    'https://www.odt.co.nz/sites/default/files/story/2020/07/gettyimages-138310605.jpg',
+    'https://images-na.ssl-images-amazon.com/images/I/41y16B5C6rL._SX311_BO1,204,203,200_.jpg',
   ],
-  "ride_delivery_information_attributes" => [
-    "from_address" => "14 rue des fleurs",
-    "from_postal_code" => "69000",
-    "from_city" => "Lyon",
-    "from_country" => "FR",
-    "from_contact_name" => "John Smith",
-    "from_contact_email" => "john.smith@gmail.com",
-    "from_contact_phone" => "06 01 02 02 02",
-    "from_extra_information" => "test",
-    "to_address" => "19 rue des champignons",
-    "to_postal_code" => "75000",
-    "to_city" => "Paris",
-    "to_country" => "FR",
-    "to_contact_name" => "John Doe",
-    "to_contact_email" => "john.doe@gmail.com",
-    "to_contact_phone" => "06 07 08 06 09"
-  ]
-];
-$ride = $rideClient->create($params);
+  ride_objects_attributes: [
+    {
+      title: 'Canapé',
+      qty: 1,
+      format: 'xxl',
+    },
+  ],
+  ride_delivery_information_attributes: {
+    from_address: '14 rue des fleurs',
+    from_postal_code: 69000,
+    from_city: 'Lyon',
+    from_country: 'FR',
+    from_contact_name: 'John Smith',
+    from_contact_email: 'john.smith@gmail.com',
+    from_contact_phone: '0601020202',
+    from_extra_information: 'test',
+    to_address: '19 rue des champignons',
+    to_postal_code: 75000,
+    to_city: 'Paris',
+    to_country: 'FR',
+    to_contact_name: 'John Doe',
+    to_contact_email: 'john.doe@gmail.com',
+    to_contact_phone: '06 07 08 06 09',
+  },
+};
+
+let response = await CocolisClient.create(createRideParams);
 ```
+
 ---
 
 ```json json_schema
@@ -258,7 +252,7 @@ type: tab
 title: Réponse
 -->
 
-La réponse sera un objet de classe `Cocolis\Api\Models\Ride`
+La réponse sera un object Javascript
 
 <!-- type: tab-end -->
 
@@ -281,11 +275,10 @@ type: tab
 title: Paramètres
 -->
 
-
-| Paramètre        |      Valeur      |   Commentaire |
-| ------------- | :-----------: | -----: |
-| :domain      | `www.cocolis.fr` | En sandbox, le domaine sera `sandbox.cocolis.fr` |
-| :buyer_tracking      |   ride.buyer_tracking    |   Lors de la création de la ride, nous vous avons renvoyé ce paramètre dans la clé `buyer_tracking` |
+| Paramètre       |       Valeur        |                                                                                       Commentaire |
+| --------------- | :-----------------: | ------------------------------------------------------------------------------------------------: |
+| :domain         |  `www.cocolis.fr`   |                                                  En sandbox, le domaine sera `sandbox.cocolis.fr` |
+| :buyer_tracking | ride.buyer_tracking | Lors de la création de la ride, nous vous avons renvoyé ce paramètre dans la clé `buyer_tracking` |
 
 > Nous vous conseillons de remonter cette information sur la page de suivi de commande de votre client.
 
@@ -316,20 +309,15 @@ Le veudeur dispose d'une interface dédiée pour suivre la livraison. Lors de la
 https://:domain/rides/seller/:seller_tracking
 ```
 
-```php
-$ride = $client->create($params);
-$ride->getSellerURL();
-```
-
 <!--
 type: tab
 title: Paramètres
 -->
 
-| Paramètre        |      Valeur      |   Commentaire |
-| ------------- | :-----------: | -----: |
-| :domain      | `www.cocolis.fr` | En sandbox, le domaine sera `sandbox.cocolis.fr` |
-| :seller_tracking      |   ride.seller_tracking    |   Lors de la création de la ride, nous vous avons renvoyé ce paramètre dans la clé `seller_tracking` |
+| Paramètre        |        Valeur        |                                                                                        Commentaire |
+| ---------------- | :------------------: | -------------------------------------------------------------------------------------------------: |
+| :domain          |   `www.cocolis.fr`   |                                                   En sandbox, le domaine sera `sandbox.cocolis.fr` |
+| :seller_tracking | ride.seller_tracking | Lors de la création de la ride, nous vous avons renvoyé ce paramètre dans la clé `seller_tracking` |
 
 > Nous vous conseillons de remonter cette information sur la page de suivi de commande de votre client.
 
@@ -351,5 +339,3 @@ https://sandbox.cocolis.fr/rides/seller/7E20B021BF8721A2
 ```
 
 <!-- type: tab-end -->
-
-
