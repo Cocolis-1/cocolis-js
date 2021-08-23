@@ -1,13 +1,13 @@
 import * as qs from 'querystringify';
 import { Base } from '../base';
-import { CanMatchParams, CreateParams } from './types';
+import { CanMatch, CanMatchParams, CreateParams } from './types';
 
 const resourceName = 'rides';
 
 export class Rides extends Base {
   can_match(params: CanMatchParams) {
     const query = `${resourceName}/can_match`;
-    return this.requestAuthenticated<CanMatchParams>(query, {
+    return this.requestAuthenticated<CanMatch>(query, {
       data: {
         from: params.from,
         to: params.to,
@@ -27,7 +27,7 @@ export class Rides extends Base {
 
   create(params: CreateParams) {
     const query = `${resourceName}`;
-    return this.requestAuthenticated<CreateParams>(query, {
+    return this.requestAuthenticated<any>(query, {
       data: {
         ride: params
       },
