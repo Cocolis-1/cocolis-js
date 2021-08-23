@@ -1,5 +1,7 @@
 # Cocolis JavaScript SDK
 
+[![codecov](https://codecov.io/gh/Cocolis-1/cocolis-js/branch/develop/graph/badge.svg?token=zrl7Xa2RNq)](https://codecov.io/gh/Cocolis-1/cocolis-js)
+
 # Getting started
 
 This library has been designed to help developers integrate **Cocolis** features into their application without managing API calls.
@@ -21,3 +23,10 @@ npm i cocolis-js
 To learn more about this library, you can access our documentation [here](https://doc.cocolis.fr/docs/cocolis-js)
 
 Finally, you can find our library on [npm](https://www.npmjs.com/package/cocolis-js)
+
+# For development
+
+## New version
+
+To create a new version, please run . `npm version patch`
+To publish : `npm publish`

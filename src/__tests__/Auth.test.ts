@@ -19,7 +19,7 @@ it('make auth on sandbox cocolis api', async () => {
         name: 'Selency',
         description: null,
         created_at: '2020-04-20T18:15:12.542+02:00',
-        updated_at: '2021-07-22T14:50:12.854+02:00',
+        updated_at: "2021-07-22T14:50:12.854+02:00",
         reserve_amount: 0,
       },
     };
