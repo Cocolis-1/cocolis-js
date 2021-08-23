@@ -46,6 +46,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "nock": "^13.1.1",
+    "np": "^7.5.0",
     "querystringify": "^2.2.0"
   }
 }
