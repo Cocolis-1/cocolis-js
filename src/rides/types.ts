@@ -30,11 +30,11 @@ export type CreateParams = {
   from_need_help?: boolean;
   from_need_help_floor?: boolean;
   from_need_help_elevator?: boolean;
-  from_need_help_furniture_lift?:boolean;
-  to_need_help?:boolean;
-  to_need_help_floor?:boolean;
-  to_need_help_elevator?:boolean;
-  to_need_help_furniture_lift?:boolean;
+  from_need_help_furniture_lift?: boolean;
+  to_need_help?: boolean;
+  to_need_help_floor?: boolean;
+  to_need_help_elevator?: boolean;
+  to_need_help_furniture_lift?: boolean;
   ride_objects_attributes?: any[any];
   ride_delivery_information_attributes: any[any];
   photos?: string[];
@@ -43,14 +43,14 @@ export type CreateParams = {
 };
 
 export type CanMatch = {
-  result: boolean,
+  result: boolean;
   estimated_prices: {
-    regular: number,
-    with_insurance: number | null,
-  },
+    regular: number;
+    with_insurance: number | null;
+  };
   insurance_detail: {
-      amount: number,
-      conditions_url: string
-  },
-  rider_count: number
+    amount: number;
+    conditions_url: string;
+  };
+  rider_count: number;
 };

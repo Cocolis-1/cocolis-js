@@ -17,7 +17,7 @@ export class Rides extends Base {
       method: 'POST',
     });
   }
-  
+
   mine() {
     const query = `${resourceName}/mine`;
     return this.requestAuthenticated<any>(query, {
@@ -29,7 +29,7 @@ export class Rides extends Base {
     const query = `${resourceName}`;
     return this.requestAuthenticated<any>(query, {
       data: {
-        ride: params
+        ride: params,
       },
       method: 'POST',
     });
