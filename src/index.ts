@@ -7,4 +7,4 @@ class Cocolis extends Base {}
 interface Cocolis extends Auth, Rides {}
 applyMixins(Cocolis, [Auth, Rides]);
 
-export default Cocolis;
+export = Cocolis;
