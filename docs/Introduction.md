@@ -11,7 +11,21 @@ Vous pouvez signaler des bugs sur cette [page](https://github.com/Cocolis-1/coco
 Installation en utilisant npm :
 
 ```bash
-npm i cocolis-js
+npm i cocolis-js --save
+```
+
+# Importer la librairie
+
+Si vous êtes dans un environnement TypeScript / NodeJS (avec "type" : "module" actif) vous pouvez l'importer comme suit :
+
+```typescript
+import Cocolis from 'cocolis-js';
+```
+
+Si vous êtes dans un environnement NodeJS classique, vous pouvez l'importer comme suit :
+
+```javascript
+const Cocolis = require('cocolis-js');
 ```
 
 # Principe général
@@ -34,6 +48,8 @@ Le principe de la librairie étant essentiellement basé sur la **documentation 
 Avec la librairie, vous pouvez vous authentifier facilement de cette façon et **une seule fois** :
 
 ```typescript
+import Cocolis from 'cocolis-js'; // import sous TypeScript
+
 const CocolisClient = new Cocolis({ live: false });
 var r = await CocolisClient.sign_in({ app_id: 'mon_app_id', password: 'mon_password' });
 ```

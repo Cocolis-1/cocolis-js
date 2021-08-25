@@ -15,7 +15,21 @@ You can report bugs on this [page](https://github.com/Cocolis-1/cocolis-js/issue
 Installation en utilisant npm :
 
 ```bash
-npm i cocolis-js
+npm i cocolis-js --save
+```
+
+# Import library
+
+For TypeScript / NodeJS with module :
+
+```typescript
+import Cocolis from 'cocolis-js';
+```
+
+For NodeJS :
+
+```javascript
+var Cocolis = require('cocolis-js');
 ```
 
 # Documentation
