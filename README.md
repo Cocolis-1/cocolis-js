@@ -20,7 +20,7 @@ npm i cocolis-js --save
 
 # Import library
 
-For TypeScript / NodeJS with module :
+For ES6 / NodeJS with module :
 
 ```typescript
 import Cocolis from 'cocolis-js';

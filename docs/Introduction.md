@@ -16,13 +16,13 @@ npm i cocolis-js --save
 
 # Importer la librairie
 
-Si vous êtes dans un environnement TypeScript / NodeJS (avec "type" : "module" actif) vous pouvez l'importer comme suit :
+Si vous êtes dans un environnement ES6 (ou NodeJS avec "type" : "module" actif) vous pouvez l'importer comme suit :
 
 ```typescript
 import Cocolis from 'cocolis-js';
 ```
 
-Si vous êtes dans un environnement NodeJS classique, vous pouvez l'importer comme suit :
+Si vous êtes dans un environnement NodeJS, vous pouvez l'importer comme suit :
 
 ```javascript
 const Cocolis = require('cocolis-js');
@@ -47,8 +47,8 @@ Le principe de la librairie étant essentiellement basé sur la **documentation 
 
 Avec la librairie, vous pouvez vous authentifier facilement de cette façon et **une seule fois** :
 
-```typescript
-import Cocolis from 'cocolis-js'; // import sous TypeScript
+```javascript
+const Cocolis = require('cocolis-js'); // import in nodejs
 
 const CocolisClient = new Cocolis({ live: false });
 var r = await CocolisClient.sign_in({ app_id: 'mon_app_id', password: 'mon_password' });
@@ -68,8 +68,8 @@ Une fois authentifié, vous pouvez effectuer des **requêtes annexes** à l'API 
 
 ```typescript
 return this.requestAuthenticated<any>('rides/mine', {
-  data: params, // Des éventuels paramètres à passer
-  method: 'GET', // Le type de méthode
+  data: params, // Any parameters to be passed
+  method: 'GET', // The type of method
 });
 ```
 
