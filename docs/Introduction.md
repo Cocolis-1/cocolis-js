@@ -28,6 +28,10 @@ Si vous êtes dans un environnement NodeJS classique, vous pouvez l'importer com
 const Cocolis = require('cocolis-js');
 ```
 
+<!-- theme: info -->
+
+> N'hésitez pas à lire la documentation de notre API afin de comprendre les différents appels. 
+
 # Principe général
 
 La librairie est essentiellement constituée de classes dont **Auth**. Celle-ci permet d'instancier l'authentification et de récupérer les tokens nécessaires pour chaque appel API.
@@ -67,7 +71,7 @@ Lors de l'instanciation de Cocolis, la variable `live` permet de définir si vou
 Une fois authentifié, vous pouvez effectuer des **requêtes annexes** à l'API de cette façon :
 
 ```typescript
-return this.requestAuthenticated<any>('rides/mine', {
+return Cocolis.requestAuthenticated<any>('rides/mine', {
   data: params, // Des éventuels paramètres à passer
   method: 'GET', // Le type de méthode
 });

@@ -1,6 +1,6 @@
 # Rides
 
-Une Ride correspond à une annonce chez Cocolis. Vous trouverez plus de détail sur le model [ici](https://doc.cocolis.fr/docs/cocolis-api/docs/models/ride/ride-full.json)
+Une Ride correspond à une annonce chez Cocolis. Vous trouverez plus de détail sur le model [ici](./models/ride/ride-full.v1.json)
 
 ### Récupérer toutes mes Rides
 
@@ -22,7 +22,7 @@ const canMatchParams = {
   to: {
     postal_code: '31000',
   },
-  volume: 500,
+  volume: 0.3,
   content_value: 120000,
 };
 
@@ -31,7 +31,7 @@ let response = await CocolisClient.can_match(canMatchParams);
 
 <!-- theme: warning -->
 
-> Tous nos prix sont en centimes
+> Tous nos prix sont en centimes et nos volumes en m3
 
 Voici un exemple de réponse en `JSON`:
 

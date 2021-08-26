@@ -6,9 +6,23 @@
       "uri": "docs/Introduction.md"
     },
     {
+      "type": "divider",
+      "title": "ARCHITECTURES ET DÉTAILS"
+    },
+    {
       "type": "item",
       "title": "Rides",
       "uri": "docs/Rides.md"
+    },
+    {
+      "type": "item",
+      "title": "Webhooks",
+      "uri": "docs/Webhooks.md"
+    },
+    {
+      "type": "item",
+      "title": "Exceptions",
+      "uri": "docs/Exceptions.md"
     },
     {
       "type": "divider",
