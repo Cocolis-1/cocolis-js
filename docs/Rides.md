@@ -7,6 +7,13 @@ Une Ride correspond à une annonce chez Cocolis. Vous trouverez plus de détail 
 Vous pouvez récupérer toutes vos Rides créées en procédant comme suit :
 
 ```typescript
+<<<<<<< Updated upstream
+=======
+const Cocolis = require('cocolis'); // import in nodejs
+
+const CocolisClient = new Cocolis({ live: false });
+
+>>>>>>> Stashed changes
 let response = await CocolisClient.mine();
 ```
 
@@ -15,6 +22,13 @@ let response = await CocolisClient.mine();
 Vérifier si Cocolis sera disponible pour effectuer la livraison pour un trajet donné entre 2 points, avec l'option assurance si éligible.
 
 ```typescript
+<<<<<<< Updated upstream
+=======
+const Cocolis = require('cocolis'); // import in nodejs
+
+const CocolisClient = new Cocolis({ live: false });
+
+>>>>>>> Stashed changes
 const canMatchParams = {
   from: {
     postal_code: '13001',
@@ -55,6 +69,13 @@ Voici un exemple de réponse en `JSON`:
 Vous pouvez créer une Ride comme dans l'exemple présenté ci-dessous (pour en savoir plus sur les paramètres cliquez [ici](https://doc.cocolis.fr/docs/cocolis-api/docs/models/ride/ride-create.v1.json)) :
 
 ```typescript
+<<<<<<< Updated upstream
+=======
+const Cocolis = require('cocolis'); // import in nodejs
+
+const CocolisClient = new Cocolis({ live: false });
+
+>>>>>>> Stashed changes
 const createRideParams = {
   description: 'Carcassonne vers toulu',
   from_lat: 43.212498,
