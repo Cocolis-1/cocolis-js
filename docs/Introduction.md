@@ -30,7 +30,7 @@ const Cocolis = require('cocolis');
 
 <!-- theme: info -->
 
-> N'hésitez pas à lire la documentation de notre API afin de comprendre les différents appels. 
+> N'hésitez pas à lire la documentation de notre API afin de comprendre les différents appels.
 
 # Principe général
 
@@ -51,13 +51,8 @@ Le principe de la librairie étant essentiellement basé sur la **documentation 
 
 Avec la librairie, vous pouvez vous authentifier facilement de cette façon et **une seule fois** :
 
-<<<<<<< Updated upstream
-```typescript
-import Cocolis from 'cocolis-js'; // import sous TypeScript
-=======
 ```javascript
 const Cocolis = require('cocolis'); // import in nodejs
->>>>>>> Stashed changes
 
 const CocolisClient = new Cocolis({ live: false });
 var r = await CocolisClient.sign_in({ app_id: 'mon_app_id', password: 'mon_password' });
