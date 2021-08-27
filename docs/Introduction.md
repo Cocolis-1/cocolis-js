@@ -11,22 +11,26 @@ Vous pouvez signaler des bugs sur cette [page](https://github.com/Cocolis-1/coco
 Installation en utilisant npm :
 
 ```bash
-npm i cocolis-js --save
+npm i cocolis --save
 ```
 
 # Importer la librairie
 
-Si vous êtes dans un environnement ES6 (ou NodeJS avec "type" : "module" actif) vous pouvez l'importer comme suit :
+Si vous êtes dans un environnement TypeScript / NodeJS (avec "type" : "module" actif) vous pouvez l'importer comme suit :
 
 ```typescript
-import Cocolis from 'cocolis-js';
+import Cocolis from 'cocolis';
 ```
 
-Si vous êtes dans un environnement NodeJS, vous pouvez l'importer comme suit :
+Si vous êtes dans un environnement NodeJS classique, vous pouvez l'importer comme suit :
 
 ```javascript
-const Cocolis = require('cocolis-js');
+const Cocolis = require('cocolis');
 ```
+
+<!-- theme: info -->
+
+> N'hésitez pas à lire la documentation de notre API afin de comprendre les différents appels.
 
 # Principe général
 
@@ -48,7 +52,7 @@ Le principe de la librairie étant essentiellement basé sur la **documentation 
 Avec la librairie, vous pouvez vous authentifier facilement de cette façon et **une seule fois** :
 
 ```javascript
-const Cocolis = require('cocolis-js'); // import in nodejs
+const Cocolis = require('cocolis'); // import in nodejs
 
 const CocolisClient = new Cocolis({ live: false });
 var r = await CocolisClient.sign_in({ app_id: 'mon_app_id', password: 'mon_password' });
@@ -67,9 +71,9 @@ Lors de l'instanciation de Cocolis, la variable `live` permet de définir si vou
 Une fois authentifié, vous pouvez effectuer des **requêtes annexes** à l'API de cette façon :
 
 ```typescript
-return this.requestAuthenticated<any>('rides/mine', {
-  data: params, // Any parameters to be passed
-  method: 'GET', // The type of method
+return Cocolis.requestAuthenticated<any>('rides/mine', {
+  data: params, // Des éventuels paramètres à passer
+  method: 'GET', // Le type de méthode
 });
 ```
 
