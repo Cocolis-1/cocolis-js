@@ -36,6 +36,18 @@ it('get webhook cocolis', (resolve) => {
   });
 });
 
+it('get all webhooks cocolis', (resolve) => {
+  const CocolisClient = new Cocolis({ live: false });
+
+  nock.back('getall.json', async (nockDone:any) => {
+    await CocolisClient.sign_in({ app_id: 'e0611906', password: 'sebfie' });
+    var r = await CocolisClient.getAllWebhooks();
+    nockDone();
+    expect(r.status).toBe(200);
+    resolve();
+  });
+});
+
 
 it('delete webhook cocolis api', (resolve) => {
   const CocolisClient = new Cocolis({ live: false });
@@ -47,6 +59,24 @@ it('delete webhook cocolis api', (resolve) => {
     expect(r.status).toBe(204);
     resolve();
   });
-  console.log('end delete webhook cocolis api');
+});
+
+it('update webhook cocolis api', (resolve) => {
+  const CocolisClient = new Cocolis({ live: false });
+
+  nock.back('update.json', async (nockDone: any) => {
+    var auth = await CocolisClient.sign_in({ app_id: 'e0611906', password: 'sebfie' });
+
+    const updateWebhooksParams = {
+      event: "offer_accepted",
+      url: "https://www.updatecocolis.fr/ride_webhook",
+      active: false
+    };
+
+    var r = await CocolisClient.updateWebhook(157, updateWebhooksParams);
+    nockDone();
+    expect(r.status).toBe(200);
+    resolve();
+  });
 });
 

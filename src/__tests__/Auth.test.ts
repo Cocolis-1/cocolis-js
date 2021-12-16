@@ -5,7 +5,7 @@ import Cocolis from '..';
 nock.back.setMode('record');
 nock.back.fixtures = __dirname + '/fixtures/auth';
 
-it('make auth on sandbox cocolis api', async () => {
+it('make auth on sandbox cocolis api', (resolve) => {
   nock.back('signin.json', async (nockDone) => {
     const CocolisClient = new Cocolis({ live: false });
     var r = await CocolisClient.sign_in({ app_id: 'e0611906', password: 'sebfie' });
@@ -25,5 +25,6 @@ it('make auth on sandbox cocolis api', async () => {
     };
 
     expect(r.data).toStrictEqual(data);
+    resolve();
   });
 });
