@@ -9,8 +9,8 @@ export type CreateParams = {
   description: string;
   from_lat?: number;
   to_lat?: number;
-  from_lgn?: number;
-  to_lgn?: number;
+  from_lng?: number;
+  to_lng?: number;
   from_address?: string;
   to_address?: string;
   from_postal_code?: string;
@@ -39,7 +39,7 @@ export type CreateParams = {
   ride_delivery_information_attributes: any[any];
   photos?: string[];
   external_id?: string;
-  photos_url?: string;
+  photo_urls?: string[];
 };
 
 export type CanMatch = {
