@@ -30,8 +30,8 @@ it('make auth on sandbox cocolis api', (resolve) => {
 });
 
 it('make auth on sandbox cocolis api with api key', (resolve) => {
-  nock.back('signin_api_key.json', async (nockDone) => {
-    const CocolisClient = new Cocolis({ live: false, api_key: 'd699daaeeb9a4303bee8dd6d3652ee05' });
+  nock.back('signin_apiKey.json', async (nockDone) => {
+    const CocolisClient = new Cocolis({ live: false, apiKey: 'd699daaeeb9a4303bee8dd6d3652ee05' });
 
     var r = await CocolisClient.mine();
     nockDone();

@@ -2,7 +2,7 @@ import axios, { AxiosPromise } from 'axios';
 
 type Config = {
   live: boolean;
-  api_key?: string;
+  apiKey?: string;
 };
 
 const API_SANDBOX = 'https://sandbox-api.cocolis.fr/api/v1/';
@@ -13,13 +13,13 @@ const FRONTEND_SANDBOX = 'https://sandbox.cocolis.fr/';
 
 export abstract class Base {
   private live: boolean = false;
-  private api_key?: string;
+  private apiKey?: string;
   private basePath: string;
   protected authParams: any;
 
   constructor(config: Config) {
     this.live = config.live || false;
-    this.api_key = config.api_key;
+    this.apiKey = config.apiKey;
     this.basePath = this.live ? API_PROD : API_SANDBOX;
   }
 
@@ -40,7 +40,7 @@ export abstract class Base {
     let headers = {} as any;
     let newOptions = {} as any;
 
-    if (!this.api_key) {
+    if (!this.apiKey) {
       headers = {
         'access-token': this.authParams.access_token,
         client: this.authParams.client,
@@ -54,7 +54,7 @@ export abstract class Base {
       };
     } else {
       headers = {
-        'X-API-KEY': this.api_key,
+        'X-API-KEY': this.apiKey,
       };
 
       newOptions = {
