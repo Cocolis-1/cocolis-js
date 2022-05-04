@@ -4,7 +4,7 @@
 
 # Getting started
 
-Dummy
+Dummy 2
 
 This library has been designed to help developers integrate **Cocolis** features into their application without managing API calls.
 
