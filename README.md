@@ -4,6 +4,8 @@
 
 # Getting started
 
+Dummy 2
+
 This library has been designed to help developers integrate **Cocolis** features into their application without managing API calls.
 
 It includes all global features such as **authentication**, **Rides** management.
