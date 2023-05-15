@@ -1,4 +1,3 @@
-import * as qs from 'querystringify';
 import { Base } from '../base';
 import { CanMatch, CanMatchParams, CreateParams } from './types';
 
@@ -32,6 +31,13 @@ export class Rides extends Base {
         ride: params,
       },
       method: 'POST',
+    });
+  }
+
+  delete(rideId: number) {
+    const query = `${resourceName}/${rideId}`;
+    return this.requestAuthenticated<any>(query, {
+      method: 'DELETE',
     });
   }
 }

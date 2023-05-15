@@ -473,3 +473,18 @@ it('create ride on sandbox cocolis api', (resolve) => {
     resolve();
   });
 });
+
+it('delete ride on sandbox cocolis api', (resolve) => {
+  let CocolisClient = new Cocolis({ live: false });
+
+  const rideId = 42;
+
+  nock.back('delete.json', async (nockDone) => {
+    await CocolisClient.sign_in({ app_id: 'e0611906', password: 'sebfie' });
+
+    var r = await CocolisClient.delete(rideId);
+    nockDone();
+    expect(r.status).toStrictEqual(204);
+    resolve();
+  });
+});

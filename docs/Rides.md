@@ -125,3 +125,17 @@ const createRideParams = {
 
 let response = await CocolisClient.create(createRideParams);
 ```
+
+### Supprimer une Ride
+
+Vous pouvez supprimer une Ride conformément à la [documentation](https://doc.cocolis.fr/docs/cocolis-api/7028429ba2cc0-delete-a-ride) :
+
+```typescript
+const Cocolis = require('cocolis'); // import in nodejs
+
+const CocolisClient = new Cocolis({ live: false });
+
+const rideId = 42;
+
+let response = await CocolisClient.delete(rideId);
+```
