@@ -474,17 +474,37 @@ it('create ride on sandbox cocolis api', (resolve) => {
   });
 });
 
-it('delete ride on sandbox cocolis api', (resolve) => {
-  let CocolisClient = new Cocolis({ live: false });
+describe('delete ride on sandbox cocolis api', () => {
+  it('should delete a ride', (resolve) => {
+    let CocolisClient = new Cocolis({ live: false });
 
-  const rideId = 42;
+    const rideId = 42;
 
-  nock.back('delete.json', async (nockDone) => {
-    await CocolisClient.sign_in({ app_id: 'e0611906', password: 'sebfie' });
+    nock.back('delete.json', async (nockDone) => {
+      await CocolisClient.sign_in({ app_id: 'e0611906', password: 'sebfie' });
 
-    var r = await CocolisClient.delete(rideId);
-    nockDone();
-    expect(r.status).toStrictEqual(204);
-    resolve();
+      var r = await CocolisClient.delete(rideId);
+      nockDone();
+      expect(r.config.method).toStrictEqual('delete');
+      expect(r.status).toStrictEqual(204);
+      resolve();
+    });
+  });
+
+  it('should not delete an already deleted ride', (resolve) => {
+    let CocolisClient = new Cocolis({ live: false });
+
+    const rideId = 42;
+
+    nock.back('delete.json', async (nockDone) => {
+      await CocolisClient.sign_in({ app_id: 'e0611906', password: 'sebfie' });
+
+      await CocolisClient.delete(rideId);
+
+      expect(CocolisClient.delete(rideId)).rejects.toThrow('Request failed with status code 401');
+
+      nockDone();
+      resolve();
+    });
   });
 });
