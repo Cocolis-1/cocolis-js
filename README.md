@@ -4,8 +4,6 @@
 
 # Getting started
 
-Dummy 2
-
 This library has been designed to help developers integrate **Cocolis** features into their application without managing API calls.
 
 It includes all global features such as **authentication**, **Rides** management.
@@ -44,5 +42,5 @@ Finally, you can find our library on [npm](https://www.npmjs.com/package/cocolis
 
 ## New version
 
-To create a new version, please run . `npm version patch`
+To create a new version, please run . `npm version 1.1.0`
 To publish : `npm publish`
