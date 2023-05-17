@@ -1,4 +1,4 @@
-import {Base} from '../base';
+import { Base } from '../base';
 import { CreateWebhook } from './types';
 
 const resourceName = 'applications/webhooks';
