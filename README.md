@@ -42,5 +42,5 @@ Finally, you can find our library on [npm](https://www.npmjs.com/package/cocolis
 
 ## New version
 
-To create a new version, please run . `npm version patch`
+To create a new version, please run . `npm version 1.1.0`
 To publish : `npm publish`
