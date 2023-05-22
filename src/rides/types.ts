@@ -119,13 +119,13 @@ export type Ride = {
   to_need_help_floor: number;
   to_need_help_elevator: boolean;
   to_need_help_furniture_lift: boolean;
-  ride_objects_attributes: Array<{
+  ride_objects_attributes: {
     title: string;
     qty: number;
     format: string;
     weight: number;
     external_url: string;
-  }>;
+  }[];
   ride_delivery_information_attributes: {
     from_address: string;
     from_postal_code: string;
