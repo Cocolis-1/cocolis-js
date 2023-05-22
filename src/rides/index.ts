@@ -40,4 +40,11 @@ export class Rides extends Base {
       method: 'DELETE',
     });
   }
+
+  get(rideId: number) {
+    const query = `${resourceName}/${rideId}`;
+    return this.requestAuthenticated<any>(query, {
+      method: 'GET',
+    });
+  }
 }
