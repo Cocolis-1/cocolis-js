@@ -5,6 +5,12 @@ import { AuthParams, UserAuth } from './types';
 const resourceName = 'app_auth/sign_in';
 
 export class Auth extends Base {
+  /**
+   * @deprecated Use an API key instead: `new Cocolis({ live, apiKey })`.
+   * The API key is sent as the `X-API-KEY` header and needs no sign-in call.
+   * Generate one from your developer account, see
+   * https://doc.cocolis.fr/docs/installation-et-utilisation/authentification
+   */
   async sign_in(params: AuthParams) {
     const query = `${resourceName}`;
     const request = await this.request<UserAuth>(query, {

@@ -32,6 +32,22 @@ For NodeJS :
 var Cocolis = require('cocolis');
 ```
 
+# Authentication
+
+Authenticate with an API key, generated from your developer account. It is sent as the
+`X-API-KEY` header on every call, and needs no sign-in step:
+
+```typescript
+const client = new Cocolis({ live: false, apiKey: 'YOUR_TOKEN' });
+```
+
+`live: false` targets the sandbox environment, `live: true` the production one.
+
+See [how to generate an API key](https://doc.cocolis.fr/docs/installation-et-utilisation/authentification).
+
+> **Deprecated** — `sign_in({ app_id, password })` still works but is no longer the
+> recommended way to authenticate. Prefer an API key for new integrations.
+
 # Documentation
 
 To learn more about this library, you can access our documentation [here](https://doc.cocolis.fr/docs/cocolis-js)
