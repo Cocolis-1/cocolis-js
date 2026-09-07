@@ -39,3 +39,9 @@ it('make auth on sandbox cocolis api with api key', (resolve) => {
     resolve();
   });
 });
+
+it('throws a helpful error when no authentication is provided', async () => {
+  const CocolisClient = new Cocolis({ live: false });
+
+  await expect(CocolisClient.mine()).rejects.toThrow(/no authentication provided/);
+});

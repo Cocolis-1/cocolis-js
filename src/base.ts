@@ -40,6 +40,18 @@ export abstract class Base {
     let headers = {} as any;
     let newOptions = {} as any;
 
+    // Rejects rather than throws: these methods return a promise, so callers catch
+    // this the same way they catch a network error or a 401.
+    if (!this.apiKey && !this.authParams) {
+      return Promise.reject(
+        new Error(
+          'Cocolis: no authentication provided. Pass an API key to the constructor - ' +
+            'new Cocolis({ live, apiKey }) - or call the deprecated sign_in() first. ' +
+            'See https://doc.cocolis.fr/docs/installation-et-utilisation/authentification',
+        ),
+      ) as AxiosPromise<T>;
+    }
+
     if (!this.apiKey) {
       headers = {
         'access-token': this.authParams.access_token,
